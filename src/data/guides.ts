@@ -235,6 +235,125 @@ const guides: Record<string, Guide> = {
     tips: ['Líkaminn í beinni línu frá höfði niður í hæla.', 'Lengra frá veggnum = erfiðara.'],
     search: 'wall push up form',
   },
+  'mjaðmalyfta með handlóði': {
+    muscles: 'Rass · aftanlæri',
+    steps: [
+      'Leggstu á bakið með hnén beygð og iljarnar í gólfinu, nálægt rassinum.',
+      'Leggðu handlóð þvert yfir mjaðmirnar og haltu því með báðum höndum.',
+      'Ýttu í gegnum hælana og lyftu mjöðmunum þar til líkaminn er í beinni línu frá hnjám að öxlum.',
+      'Kreistu rassinn efst í 1 sek og láttu síga rólega niður.',
+    ],
+    tips: ['Ýttu í gegnum hælana, ekki tærnar.', 'Ekki fetta mjóbakið efst.'],
+    search: 'dumbbell glute bridge form',
+  },
+  'mjaðmalyfta á öðrum fæti': {
+    muscles: 'Rass · aftanlæri',
+    steps: [
+      'Leggstu á bakið með annan fótinn í gólfinu og hinn beinan upp í loft eða að brjósti.',
+      'Ýttu í gegnum hæl fótarins á gólfinu og lyftu mjöðmunum.',
+      'Haltu mjöðmunum láréttum – ekki láta aðra hliðina síga.',
+      'Láttu síga rólega og endurtaktu. Skiptu svo um fót.',
+    ],
+    tips: ['Byrjaðu án þyngdar.'],
+    search: 'single leg glute bridge form',
+  },
+  'rúmensk réttstaða með handlóðum': {
+    muscles: 'Aftanlæri · rass · mjóbak',
+    steps: [
+      'Stattu með lóðin fyrir framan lærin og smá beygju í hnjánum.',
+      'Ýttu mjöðmunum aftur og láttu lóðin renna niður eftir lærunum með beint bak.',
+      'Farðu niður þar til þú finnur teygju aftan í lærunum (um mitt sköflunginn).',
+      'Ýttu mjöðmunum fram og stattu upp, kreistu rassinn efst.',
+    ],
+    tips: ['Beygjan í hnjánum breytist ekki – hreyfingin er í mjöðmunum.', 'Bakið beint allan tímann.'],
+    search: 'dumbbell romanian deadlift form',
+  },
+  'rúmensk réttstaða á öðrum fæti': {
+    muscles: 'Aftanlæri · rass · jafnvægi',
+    steps: [
+      'Stattu á öðrum fæti með lóð í gagnstæðri hendi. Styddu hinni hendinni létt við vegg ef þarf.',
+      'Hallaðu bolnum fram og lyftu lausa fætinum aftur, mjaðmirnar haldast láréttar.',
+      'Farðu niður þar til þú finnur teygju aftan í læri.',
+      'Komdu aftur upp með því að ýta mjöðminni fram. Skiptu svo um fót.',
+    ],
+    tips: ['Smá beygja í hnénu á standandi fæti.', 'Rólegt og stjórnað.'],
+    search: 'single leg romanian deadlift dumbbell form',
+  },
+  'hliðarganga með teygju': {
+    muscles: 'Hliðar mjaðma (miðrassvöðvi)',
+    steps: [
+      'Settu teygju um fæturna rétt fyrir ofan hnén eða um ökklana.',
+      'Stattu með fætur í mjaðmabreidd og smá beygju í hnjánum.',
+      'Stígðu til hliðar og haltu spennu á teygjunni allan tímann.',
+      'Taktu jafn mörg skref í hina áttina.',
+    ],
+    tips: ['Hnén vísa beint fram – ekki láta þau falla inn.'],
+    search: 'banded lateral walk form',
+  },
+  kálfalyftur: {
+    muscles: 'Kálfar',
+    steps: [
+      'Stattu með lóð í höndum og styddu þig við vegg ef þarf.',
+      'Lyftu hælunum eins hátt og þú getur.',
+      'Staldraðu stutt efst.',
+      'Láttu hælana síga rólega niður.',
+    ],
+    tips: ['Hæg hreyfing niður gefur mest.'],
+    search: 'dumbbell calf raise form',
+  },
+  'kálfalyftur á öðrum fæti': {
+    muscles: 'Kálfar · ökklastöðugleiki',
+    steps: [
+      'Stattu á öðrum fæti og styddu þig við vegg með annarri hendi.',
+      'Lyftu hælnum eins hátt og þú getur.',
+      'Láttu hann síga rólega niður. Skiptu svo um fót.',
+    ],
+    tips: ['Haltu á lóði í lausu hendinni til að gera erfiðara.'],
+    search: 'single leg calf raise form',
+  },
+  'grunn bikarbeygja': {
+    muscles: 'Framanlæri · rass',
+    steps: [
+      'Haltu einu handlóði upp við brjóstið með báðum höndum.',
+      'Fætur aðeins breiðari en mjaðmir, tærnar örlítið út.',
+      'Ýttu mjöðmunum aftur og beygðu hnén – farðu aðeins hálfa leið niður (ekki dýpra en svo að lærin séu ofan við lárétt).',
+      'Ýttu þér upp í gegnum hælana.',
+    ],
+    tips: ['Hnén fylgja tánum – ekki falla inn.', 'Ef hnéð verkjar, minnkaðu dýptina eða slepptu æfingunni.'],
+    search: 'goblet box squat form',
+  },
+  veggseta: {
+    muscles: 'Framanlæri',
+    steps: [
+      'Stattu með bakið upp við vegg og fæturna um hálfan metra frá veggnum.',
+      'Renndu þér niður vegginn þar til hnén eru í um 45–60° beygju (ekki alveg lárétt læri).',
+      'Haltu stöðunni í tilsettan tíma.',
+      'Renndu þér upp aftur.',
+    ],
+    tips: ['Hærri staða = minna álag á hnén.', 'Andaðu jafnt – ekki halda niðri í þér andanum.'],
+    search: 'wall sit form',
+  },
+  'aftursveifla með teygju': {
+    muscles: 'Rass',
+    steps: [
+      'Settu teygju um ökklana og styddu þig við vegg.',
+      'Með beint bak, ýttu öðrum fætinum beint aftur á móti teygjunni.',
+      'Kreistu rassinn og komdu rólega til baka.',
+      'Kláraðu endurtekningarnar og skiptu svo um fót.',
+    ],
+    tips: ['Ekki fetta mjóbakið – hreyfingin kemur frá mjöðminni.'],
+    search: 'standing banded glute kickback',
+  },
+  'hliðarlega fótalyfta': {
+    muscles: 'Hliðar mjaðma',
+    steps: [
+      'Leggstu á hliðina með fæturna beina hvor ofan á öðrum.',
+      'Lyftu efri fætinum upp í um 45° með tærnar vísandi fram.',
+      'Láttu hann síga hægt niður. Skiptu svo um hlið.',
+    ],
+    tips: ['Ekki rúlla aftur á bakið.', 'Teygja um ökklana gerir þetta erfiðara.'],
+    search: 'side lying leg raise form',
+  },
 };
 
 export function getGuide(name: string): Guide | undefined {
@@ -252,5 +371,6 @@ export const warmup = [
   { id: 'w2', name: 'Handahringir fram og aftur', detail: '30 sek' },
   { id: 'w3', name: 'Teygja dregin í sundur', detail: '15 endurt.' },
   { id: 'w4', name: 'Armbeygjur við vegg', detail: '10 endurt.' },
+  { id: 'w6', name: 'Mjaðmahringir standandi', detail: '10 hvora átt' },
   { id: 'w5', name: 'Upphitunarsett – fyrsta æfing, létt', detail: '10 endurt.' },
 ];
