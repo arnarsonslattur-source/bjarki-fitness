@@ -1,4 +1,5 @@
-// Sjálfgefin vikuáætlun. Æfingum er breytt í appinu sjálfu (Æfingar → dagur → Breyta).
+// Sjálfgefin vikuáætlun fyrir heimaæfingar: handlóð, teygjur og veggur.
+// Æfingum er breytt í appinu sjálfu (Æfingar → dagur → Breyta).
 
 export type Exercise = {
   id: string;
@@ -27,10 +28,10 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Efri líkami – ýta',
     focus: 'Brjóst · axlir · þríhöfði',
     exercises: [
-      { id: 'e1', name: 'Bekkpressa með handlóðum', sets: 3, reps: '8–10', rest: '60 sek' },
-      { id: 'e2', name: 'Axlapressa sitjandi', sets: 3, reps: '8–10', rest: '60 sek' },
-      { id: 'e3', name: 'Hliðarlyftur', sets: 3, reps: '12–15', rest: '45 sek' },
-      { id: 'e4', name: 'Þríhöfðapressa í kapli', sets: 3, reps: '12', rest: '45 sek' },
+      { id: 'h1', name: 'Gólfpressa með handlóðum', sets: 3, reps: '8–12', rest: '60 sek' },
+      { id: 'h2', name: 'Axlapressa standandi', sets: 3, reps: '8–10', rest: '60 sek' },
+      { id: 'h3', name: 'Hliðarlyftur', sets: 3, reps: '12–15', rest: '45 sek' },
+      { id: 'h4', name: 'Þríhöfðaréttur yfir höfuð', sets: 3, reps: '10–12', rest: '45 sek' },
     ],
   },
   {
@@ -40,10 +41,10 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Efri líkami – toga',
     focus: 'Bak · tvíhöfði',
     exercises: [
-      { id: 'e5', name: 'Niðurtog í kapli', sets: 3, reps: '8–10', rest: '60 sek' },
-      { id: 'e6', name: 'Róður sitjandi', sets: 3, reps: '10', rest: '60 sek' },
-      { id: 'e7', name: 'Face pull', sets: 3, reps: '15', rest: '45 sek' },
-      { id: 'e8', name: 'Tvíhöfðakreppa', sets: 3, reps: '10–12', rest: '45 sek' },
+      { id: 'h5', name: 'Framhallandi róður með handlóðum', sets: 3, reps: '8–10', rest: '60 sek' },
+      { id: 'h6', name: 'Niðurtog með teygju', sets: 3, reps: '12–15', rest: '45 sek' },
+      { id: 'h7', name: 'Teygja dregin í sundur', sets: 3, reps: '15', rest: '45 sek' },
+      { id: 'h8', name: 'Tvíhöfðakreppa', sets: 3, reps: '10–12', rest: '45 sek' },
     ],
   },
   {
@@ -61,12 +62,16 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Efri líkami – heild',
     focus: 'Ýta · toga · axlir',
     exercises: [
-      { id: 'e9', name: 'Hallandi bekkpressa', sets: 3, reps: '10', rest: '60 sek' },
-      { id: 'e10', name: 'Einarma róður', sets: 3, reps: '10', rest: '60 sek' },
-      { id: 'e11', name: 'Arnold-pressa', sets: 3, reps: '10', rest: '45 sek' },
+      { id: 'h9', name: 'Fluga á gólfi', sets: 3, reps: '10–12', rest: '45 sek' },
+      { id: 'h10', name: 'Einarma róður með stuðningi við vegg', sets: 3, reps: '10', rest: '60 sek' },
+      { id: 'h11', name: 'Arnold-pressa', sets: 3, reps: '10', rest: '45 sek' },
+      { id: 'h12', name: 'Hamarskreppa', sets: 3, reps: '10–12', rest: '45 sek' },
     ],
   },
 ];
+
+/** Auðkenni sjálfgefinna æfinga (gamlar og nýjar) – notað við uppfærslu vistaðra gagna */
+export const isDefaultExerciseId = (id: string) => /^[eh]\d+$/.test(id);
 
 export function todayWeekday(): number {
   const d = new Date().getDay(); // 0 = sunnudagur

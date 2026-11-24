@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, ReactNode, useContext, useEffect, useRef, useState } from 'react';
-import { Exercise, WorkoutDay, defaultPlan } from '@/data/plan';
+import { Exercise, WorkoutDay, defaultPlan, isDefaultExerciseId } from '@/data/plan';
 import { dateKey } from '@/dates';
 
 export type HistoryEntry = {
@@ -33,7 +33,7 @@ type State = {
 
 const KEY = 'bjarki-fitness-v1';
 
-const VERSION = 2;
+const VERSION = 3;
 
 const defaultState: State = {
   version: VERSION,
@@ -55,6 +55,15 @@ function migrate(s: Partial<State>): Partial<State> {
       ...d,
       exercises: d.exercises.map((e) => ({ ...e, rest: e.rest ? shorter[e.rest] ?? e.rest : e.rest })),
     }));
+  }
+  if ((s.version ?? 1) < 3 && s.plan) {
+    // Heimaæfingar: skipta út sjálfgefnum æfingum, halda þeim sem notandi bætti við
+    s.plan = s.plan.map((d) => {
+      const def = defaultPlan.find((p) => p.id === d.id);
+      if (!def) return d;
+      const own = d.exercises.filter((e) => !isDefaultExerciseId(e.id));
+      return { ...d, exercises: [...def.exercises, ...own] };
+    });
   }
   return { ...s, version: VERSION };
 }

@@ -129,6 +129,112 @@ const guides: Record<string, Guide> = {
     tips: ['Hæg og stjórnuð hreyfing.'],
     search: 'arnold press form',
   },
+  'gólfpressa með handlóðum': {
+    muscles: 'Brjóst · framaxlir · þríhöfði',
+    steps: [
+      'Leggstu á bakið á gólfinu með hnén beygð og iljarnar í gólfinu.',
+      'Haltu lóðunum yfir brjóstinu, lófarnir snúa fram eða hvor að öðrum.',
+      'Láttu lóðin síga þar til upphandleggirnir snerta gólfið létt, olnbogar í um 45° frá líkamanum.',
+      'Pressaðu beint upp aftur.',
+    ],
+    tips: ['Ekki skella olnbogunum í gólfið – snertu létt.', 'Herðablöðin saman og niður.'],
+    search: 'dumbbell floor press form',
+  },
+  'axlapressa standandi': {
+    muscles: 'Axlir · þríhöfði',
+    steps: [
+      'Stattu með fætur í mjaðmabreidd og lóðin í axlarhæð.',
+      'Spenntu kvið og rassvöðva.',
+      'Pressaðu lóðin beint upp yfir höfuðið.',
+      'Láttu þau síga rólega aftur niður í axlarhæð.',
+    ],
+    tips: ['Ekki fetta mjóbakið – haltu rifbeinunum niðri.', 'Ekki nota fæturna til að skjóta upp.'],
+    search: 'standing dumbbell shoulder press form',
+  },
+  'þríhöfðaréttur yfir höfuð': {
+    muscles: 'Þríhöfði',
+    steps: [
+      'Stattu og haltu einu handlóði með báðum höndum fyrir ofan höfuðið.',
+      'Láttu lóðið síga aftur fyrir höfuðið með því að beygja olnbogana.',
+      'Réttu úr olnbogunum og lyftu lóðinu aftur upp.',
+    ],
+    tips: ['Olnbogarnir vísa fram og haldast nálægt höfðinu.', 'Spenntu kviðinn.'],
+    search: 'overhead dumbbell triceps extension form',
+  },
+  'framhallandi róður með handlóðum': {
+    muscles: 'Bak · aftanverðar axlir · tvíhöfði',
+    steps: [
+      'Stattu með lóð í höndunum, smá beygju í hnjánum.',
+      'Hallaðu þér fram frá mjöðmunum með beint bak, bolurinn í um 45°.',
+      'Togaðu lóðin upp að mjöðmunum og kreistu herðablöðin saman.',
+      'Láttu þau síga rólega niður.',
+    ],
+    tips: ['Bakið beint allan tímann – ekki hringja það.', 'Hálsinn í beinu framhaldi af bakinu.'],
+    search: 'bent over dumbbell row form',
+  },
+  'niðurtog með teygju': {
+    muscles: 'Breiðir bakvöðvar · aftanverðar axlir',
+    steps: [
+      'Haltu teygjunni beint upp yfir höfuðið, hendur aðeins breiðari en axlir.',
+      'Dragðu teygjuna í sundur og niður að efra brjósti, olnbogarnir fara niður og út.',
+      'Kreistu herðablöðin saman neðst.',
+      'Farðu rólega aftur upp.',
+    ],
+    tips: ['Því þéttar sem þú heldur, því erfiðara verður það.'],
+    search: 'resistance band lat pulldown',
+  },
+  'teygja dregin í sundur': {
+    muscles: 'Aftanverðar axlir · efra bak',
+    steps: [
+      'Haltu teygjunni beint fyrir framan þig í axlarhæð.',
+      'Dragðu hana í sundur út til hliðanna þar til hún snertir brjóstið.',
+      'Kreistu herðablöðin saman.',
+      'Farðu rólega til baka.',
+    ],
+    tips: ['Hendurnar haldast nánast beinar.', 'Ekki lyfta öxlunum upp að eyrum.'],
+    search: 'band pull apart form',
+  },
+  'fluga á gólfi': {
+    muscles: 'Brjóst',
+    steps: [
+      'Leggstu á gólfið með hnén beygð og lóðin beint upp yfir brjóstinu, lófarnir snúa saman.',
+      'Með smá beygju í olnbogum, láttu lóðin síga út til hliðanna þar til upphandleggirnir snerta gólfið.',
+      'Færðu lóðin aftur saman upp yfir brjóstið eins og þú sért að faðma tré.',
+    ],
+    tips: ['Létt þyngd – beygjan í olnbogunum breytist ekki.'],
+    search: 'dumbbell floor fly form',
+  },
+  'einarma róður með stuðningi við vegg': {
+    muscles: 'Breiðir bakvöðvar · miðbak',
+    steps: [
+      'Stattu skáhallt við vegg og styddu annarri hendinni á vegginn.',
+      'Hallaðu þér fram með beint bak, lóðið hangir í hinni hendinni.',
+      'Togaðu lóðið upp að mjöðminni með olnbogann nálægt líkamanum.',
+      'Láttu það síga rólega niður.',
+    ],
+    tips: ['Ekki snúa bolnum til að ná lóðinu upp.'],
+    search: 'one arm dumbbell row standing supported',
+  },
+  hamarskreppa: {
+    muscles: 'Tvíhöfði · framhandleggir',
+    steps: [
+      'Stattu með lóðin við hliðarnar, lófarnir snúa hvor að öðrum.',
+      'Beygðu olnbogana og lyftu lóðunum upp að öxlunum án þess að snúa úlnliðunum.',
+      'Láttu þau síga hægt niður.',
+    ],
+    tips: ['Olnbogarnir kyrrir við síðurnar.'],
+    search: 'dumbbell hammer curl form',
+  },
+  'armbeygjur við vegg': {
+    muscles: 'Brjóst · axlir · þríhöfði',
+    steps: [
+      'Stattu armslengd frá vegg og leggðu lófana á vegginn í axlarhæð.',
+      'Beygðu olnbogana og færðu brjóstið að veggnum.',
+      'Ýttu þér aftur út.',
+    ],
+    tips: ['Líkaminn í beinni línu frá höfði niður í hæla.', 'Lengra frá veggnum = erfiðara.'],
+    search: 'wall push up form',
+  },
 };
 
 export function getGuide(name: string): Guide | undefined {
