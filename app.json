@@ -19,7 +19,7 @@
       "baseUrl": "/bjarki-fitness"
     },
     "web": {
-      "output": "static",
+      "output": "single",
       "bundler": "metro",
       "name": "Bjarki Fitness",
       "shortName": "Bjarki",

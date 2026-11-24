@@ -4,13 +4,8 @@ import { useState } from 'react';
 import { Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Badge, Card, T, styles } from '@/components/ui';
-import { getDay, weeklyPlan } from '@/data/plan';
+import { getDay } from '@/data/plan';
 import { colors, radius, spacing } from '@/theme';
-
-// Býr til eina síðu fyrir hvern æfingadag í vefútgáfunni.
-export function generateStaticParams() {
-  return weeklyPlan.map((d) => ({ dagur: d.id }));
-}
 
 export default function AefingDagsins() {
   const { dagur } = useLocalSearchParams<{ dagur: string }>();

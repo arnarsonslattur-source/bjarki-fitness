@@ -21,11 +21,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - run: npm install
+      # Samræmir pakkaútgáfur við Expo SDK
+      - run: npx expo install --fix
       - run: npx expo export -p web
-      # GitHub Pages hunsar möppur sem byrja á _ (t.d. _expo) nema þetta sé til staðar
-      - run: touch dist/.nojekyll && cp dist/index.html dist/404.html
+      # Heimaskjárstillingar, 404-síða og .nojekyll (GitHub hunsar annars _expo möppuna)
+      - run: node scripts/pwa.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
