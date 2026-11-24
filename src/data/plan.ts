@@ -29,10 +29,11 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Fætur A – mjaðmir',
     focus: 'Rass · aftanlæri · kálfar · hnévænt',
     exercises: [
-      { id: 'g1', name: 'Mjaðmalyfta með handlóði', sets: 4, reps: '12 · 2 sek bið efst', rest: '60 sek' },
-      { id: 'g2', name: 'Rúmensk réttstaða með handlóðum', sets: 4, reps: '10 · 3 sek niður', rest: '60 sek' },
-      { id: 'g3', name: 'Hliðarganga með teygju', sets: 3, reps: '15 hvora átt', rest: '45 sek' },
-      { id: 'g4', name: 'Kálfalyftur á öðrum fæti', sets: 4, reps: '12 hvorn fót', rest: '45 sek' },
+      { id: 'k1', name: 'Mjaðmalyfta með handlóði', sets: 4, reps: '12 · 2 sek bið efst', rest: '60 sek' },
+      { id: 'k2', name: 'Rúmensk réttstaða með handlóðum', sets: 4, reps: '10 · 3 sek niður', rest: '60 sek' },
+      { id: 'k3', name: 'Hliðarganga með teygju', sets: 3, reps: '15 hvora átt', rest: '45 sek' },
+      { id: 'k4', name: 'Kálfalyftur á öðrum fæti', sets: 4, reps: '12 hvorn fót', rest: '45 sek' },
+      { id: 'k5', name: 'Dauð padda', sets: 3, reps: '8 hvora hlið', rest: '45 sek' },
     ],
   },
   {
@@ -40,14 +41,16 @@ export const defaultPlan: WorkoutDay[] = [
     weekday: 2,
     dayName: 'Þriðjudagur',
     title: 'Efri líkami',
-    focus: 'Brjóst · bak · axlir · hendur',
+    focus: 'Brjóst · bak · axlir · hendur · mjóbak',
     exercises: [
-      { id: 'f5', name: 'Gólfpressa með handlóðum', sets: 3, reps: '8–12', rest: '60 sek' },
-      { id: 'f6', name: 'Framhallandi róður með handlóðum', sets: 3, reps: '8–10', rest: '60 sek' },
-      { id: 'f7', name: 'Axlapressa standandi', sets: 3, reps: '8–10', rest: '60 sek' },
-      { id: 'f8', name: 'Niðurtog með teygju', sets: 3, reps: '12–15', rest: '45 sek' },
-      { id: 'f9', name: 'Tvíhöfðakreppa', sets: 3, reps: '10–12', rest: '45 sek' },
-      { id: 'f10', name: 'Þríhöfðaréttur yfir höfuð', sets: 3, reps: '10–12', rest: '45 sek' },
+      { id: 'k6', name: 'Gólfpressa með handlóðum', sets: 3, reps: '8–12', rest: '60 sek' },
+      { id: 'k7', name: 'Framhallandi róður með handlóðum', sets: 4, reps: '8–10', rest: '60 sek' },
+      { id: 'k8', name: 'Axlapressa standandi', sets: 3, reps: '8–10', rest: '60 sek' },
+      { id: 'k9', name: 'Niðurtog með teygju', sets: 3, reps: '12–15', rest: '45 sek' },
+      { id: 'k10', name: 'Teygja dregin í sundur', sets: 3, reps: '15', rest: '45 sek' },
+      { id: 'k11', name: 'Ofurmenni', sets: 3, reps: '10 · 2 sek bið', rest: '45 sek' },
+      { id: 'k12', name: 'Tvíhöfðakreppa', sets: 3, reps: '10–12', rest: '45 sek' },
+      { id: 'k13', name: 'Þríhöfðaréttur yfir höfuð', sets: 3, reps: '10–12', rest: '45 sek' },
     ],
   },
   {
@@ -57,11 +60,12 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Fætur B – einn fótur',
     focus: 'Aftanlæri · rass · jafnvægi · hnévænt',
     exercises: [
-      { id: 'g5', name: 'Grunn bikarbeygja', sets: 3, reps: '10 · 3 sek niður', rest: '60 sek' },
-      { id: 'g6', name: 'Rúmensk réttstaða á öðrum fæti', sets: 4, reps: '10 hvorn fót', rest: '60 sek' },
-      { id: 'g7', name: 'Mjaðmalyfta á öðrum fæti', sets: 4, reps: '12 hvorn fót', rest: '45 sek' },
-      { id: 'g8', name: 'Mjaðmalyfta með gangi', sets: 3, reps: '8', rest: '45 sek' },
-      { id: 'g9', name: 'Hliðarlega fótalyfta', sets: 3, reps: '20 hvorn fót', rest: '45 sek' },
+      { id: 'k14', name: 'Grunn bikarbeygja', sets: 3, reps: '10 · 3 sek niður', rest: '60 sek' },
+      { id: 'k15', name: 'Rúmensk réttstaða á öðrum fæti', sets: 4, reps: '10 hvorn fót', rest: '60 sek' },
+      { id: 'k16', name: 'Mjaðmalyfta á öðrum fæti', sets: 4, reps: '12 hvorn fót', rest: '45 sek' },
+      { id: 'k17', name: 'Mjaðmalyfta með gangi', sets: 3, reps: '8', rest: '45 sek' },
+      { id: 'k18', name: 'Hliðarlega fótalyfta', sets: 3, reps: '20 hvorn fót', rest: '45 sek' },
+      { id: 'k19', name: 'Hliðarplanki', sets: 3, reps: '20–30 sek hvor hlið', rest: '45 sek' },
     ],
   },
   {
@@ -71,17 +75,18 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Fætur C – kraftur',
     focus: 'Rass · aftanlæri · kálfar · hnévænt',
     exercises: [
-      { id: 'g10', name: 'Súmó réttstaða með handlóði', sets: 4, reps: '12', rest: '60 sek' },
-      { id: 'g11', name: 'Rúmensk réttstaða með handlóðum', sets: 4, reps: '10 · 3 sek niður', rest: '60 sek' },
-      { id: 'g12', name: 'Mjaðmalyfta með teygju og lóði', sets: 3, reps: '15', rest: '45 sek' },
-      { id: 'g13', name: 'Aftursveifla með teygju', sets: 3, reps: '15 hvorn fót', rest: '45 sek' },
-      { id: 'g14', name: 'Kálfalyftur', sets: 4, reps: '20', rest: '45 sek' },
+      { id: 'k20', name: 'Súmó réttstaða með handlóði', sets: 4, reps: '12', rest: '60 sek' },
+      { id: 'k21', name: 'Rúmensk réttstaða með handlóðum', sets: 4, reps: '10 · 3 sek niður', rest: '60 sek' },
+      { id: 'k22', name: 'Mjaðmalyfta með teygju og lóði', sets: 3, reps: '15', rest: '45 sek' },
+      { id: 'k23', name: 'Aftursveifla með teygju', sets: 3, reps: '15 hvorn fót', rest: '45 sek' },
+      { id: 'k24', name: 'Kálfalyftur', sets: 4, reps: '20', rest: '45 sek' },
+      { id: 'k25', name: 'Planki', sets: 3, reps: '30–45 sek', rest: '45 sek' },
     ],
   },
 ];
 
 /** Auðkenni sjálfgefinna æfinga (gamlar og nýjar) – notað við uppfærslu vistaðra gagna */
-export const isDefaultExerciseId = (id: string) => /^[ehfg]\d+$/.test(id);
+export const isDefaultExerciseId = (id: string) => /^[ehfgk]\d+$/.test(id);
 
 export function todayWeekday(): number {
   const d = new Date().getDay(); // 0 = sunnudagur

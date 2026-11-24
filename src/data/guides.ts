@@ -387,6 +387,49 @@ const guides: Record<string, Guide> = {
     tips: ['Ekki láta hnén falla inn.'],
     search: 'banded dumbbell glute bridge',
   },
+  ofurmenni: {
+    muscles: 'Mjóbak · rass · efra bak',
+    steps: [
+      'Leggstu á magann með hendurnar beint fram og fæturna beina.',
+      'Lyftu höndum, bringu og fótum örlítið frá gólfinu samtímis.',
+      'Haltu í 2 sek og horfðu niður í gólfið.',
+      'Láttu síga rólega niður.',
+    ],
+    tips: ['Lítil hreyfing er nóg – ekki fetta hálsinn.', 'Kreistu rassinn þegar þú lyftir.'],
+    search: 'superman exercise form',
+  },
+  'dauð padda': {
+    muscles: 'Djúpir kviðvöðvar · stöðugleiki í mjóbaki',
+    steps: [
+      'Leggstu á bakið með hendurnar beint upp og hnén beygð í 90° yfir mjöðmunum.',
+      'Þrýstu mjóbakinu niður í gólfið.',
+      'Teygðu hægri hönd aftur og vinstri fót fram samtímis, rétt fyrir ofan gólfið.',
+      'Komdu til baka og skiptu um hlið.',
+    ],
+    tips: ['Mjóbakið má ekki lyftast frá gólfinu.', 'Hægt og rólega – andaðu frá þér þegar þú teygir.'],
+    search: 'dead bug exercise form',
+  },
+  hliðarplanki: {
+    muscles: 'Hliðarkviður · mjóbak · hliðar mjaðma',
+    steps: [
+      'Leggstu á hliðina með olnbogann beint undir öxlinni og fæturna beina hvor ofan á öðrum.',
+      'Lyftu mjöðmunum þannig að líkaminn myndi beina línu frá höfði niður í fætur.',
+      'Haltu stöðunni.',
+      'Skiptu um hlið.',
+    ],
+    tips: ['Ekki láta mjaðmirnar síga.', 'Of erfitt? Settu efri fótinn fyrir framan hinn á gólfið.'],
+    search: 'side plank form',
+  },
+  planki: {
+    muscles: 'Kviður · mjóbak · axlir',
+    steps: [
+      'Farðu á framhandleggina og tærnar, olnbogar undir öxlunum.',
+      'Líkaminn í beinni línu frá höfði niður í hæla.',
+      'Spenntu kvið og rass og haltu stöðunni.',
+    ],
+    tips: ['Ekki láta mjaðmirnar síga eða stinga upp.', 'Andaðu jafnt.'],
+    search: 'forearm plank form',
+  },
 };
 
 export function getGuide(name: string): Guide | undefined {
