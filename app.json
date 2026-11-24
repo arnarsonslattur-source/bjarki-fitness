@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Bjarki Fitness",
+    "slug": "bjarki-fitness",
+    "scheme": "bjarkifitness",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0B0D10",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "is.bjarki.fitness"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": false,
+      "baseUrl": "/bjarki-fitness"
+    },
+    "web": {
+      "output": "static",
+      "bundler": "metro",
+      "name": "Bjarki Fitness",
+      "shortName": "Bjarki",
+      "themeColor": "#0B0D10",
+      "backgroundColor": "#0B0D10"
+    }
+  }
+}

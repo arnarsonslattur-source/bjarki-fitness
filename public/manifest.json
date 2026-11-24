@@ -1,0 +1,14 @@
+{
+  "name": "Bjarki Fitness",
+  "short_name": "Bjarki",
+  "start_url": "/bjarki-fitness/",
+  "scope": "/bjarki-fitness/",
+  "display": "standalone",
+  "background_color": "#0B0D10",
+  "theme_color": "#0B0D10",
+  "lang": "is",
+  "icons": [
+    { "src": "/bjarki-fitness/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/bjarki-fitness/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
