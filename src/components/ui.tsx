@@ -1,5 +1,16 @@
+import { Ionicons } from '@expo/vector-icons';
 import { ReactNode } from 'react';
-import { ScrollView, StyleSheet, Text, TextProps, View, ViewStyle } from 'react-native';
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TextInputProps,
+  TextProps,
+  View,
+  ViewStyle,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { colors, radius, spacing, type } from '@/theme';
 
@@ -86,7 +97,102 @@ export function Stat({ value, label }: { value: string; label: string }) {
   );
 }
 
+type ButtonVariant = 'primary' | 'secondary' | 'danger';
+
+export function Button({
+  label,
+  onPress,
+  variant = 'primary',
+  icon,
+  disabled,
+  style,
+}: {
+  label: string;
+  onPress: () => void;
+  variant?: ButtonVariant;
+  icon?: keyof typeof Ionicons.glyphMap;
+  disabled?: boolean;
+  style?: ViewStyle;
+}) {
+  const bg = variant === 'primary' ? colors.accent : variant === 'danger' ? colors.dangerDim : colors.surfaceHigh;
+  const fg = variant === 'primary' ? colors.bg : variant === 'danger' ? colors.danger : colors.text;
+  return (
+    <Pressable
+      onPress={onPress}
+      disabled={disabled}
+      style={({ pressed }) => [
+        styles.button,
+        { backgroundColor: bg, opacity: disabled ? 0.4 : pressed ? 0.8 : 1 },
+        style,
+      ]}
+    >
+      {icon ? <Ionicons name={icon} size={18} color={fg} /> : null}
+      <T variant="heading" color={fg}>
+        {label}
+      </T>
+    </Pressable>
+  );
+}
+
+export function IconButton({
+  icon,
+  onPress,
+  color = colors.textMuted,
+}: {
+  icon: keyof typeof Ionicons.glyphMap;
+  onPress: () => void;
+  color?: string;
+}) {
+  return (
+    <Pressable onPress={onPress} hitSlop={8} style={({ pressed }) => [styles.iconButton, { opacity: pressed ? 0.6 : 1 }]}>
+      <Ionicons name={icon} size={18} color={color} />
+    </Pressable>
+  );
+}
+
+export function Input(props: TextInputProps) {
+  return <TextInput placeholderTextColor={colors.textFaint} {...props} style={[styles.input, props.style]} />;
+}
+
+export function Empty({ icon, text }: { icon: keyof typeof Ionicons.glyphMap; text: string }) {
+  return (
+    <Card>
+      <View style={styles.row}>
+        <Ionicons name={icon} size={20} color={colors.textMuted} />
+        <T muted style={{ flex: 1 }}>
+          {text}
+        </T>
+      </View>
+    </Card>
+  );
+}
+
 export const styles = StyleSheet.create({
+  button: {
+    height: 52,
+    borderRadius: radius.md,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.sm,
+    paddingHorizontal: spacing.lg,
+  },
+  iconButton: {
+    width: 34,
+    height: 34,
+    borderRadius: radius.sm,
+    backgroundColor: colors.surfaceHigh,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  input: {
+    backgroundColor: colors.surfaceHigh,
+    color: colors.text,
+    borderRadius: radius.md,
+    paddingHorizontal: spacing.md,
+    height: 46,
+    fontSize: 16,
+  },
   safe: { flex: 1, backgroundColor: colors.bg },
   scroll: { padding: spacing.lg, paddingBottom: spacing.xxl * 2 },
   header: { marginBottom: spacing.xl, marginTop: spacing.sm, gap: spacing.xs },

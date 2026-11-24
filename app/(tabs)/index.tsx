@@ -2,7 +2,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { Link } from 'expo-router';
 import { Pressable, View } from 'react-native';
 import { Badge, Card, Screen, Section, Stat, T, styles } from '@/components/ui';
-import { WEEKDAYS, nextWorkout, todayWeekday, weeklyPlan } from '@/data/plan';
+import { WEEKDAYS, nextWorkout, todayWeekday, totalSets } from '@/data/plan';
+import { dateKey, startOfWeek, weekdayOf } from '@/dates';
+import { useStore } from '@/store';
 import { colors, radius, spacing } from '@/theme';
 
 function greeting() {
@@ -13,27 +15,37 @@ function greeting() {
 }
 
 export default function Heim() {
+  const { state } = useStore();
+  const now = new Date();
   const today = todayWeekday();
-  const next = nextWorkout();
+  const next = nextWorkout(state.plan);
   const isToday = next.weekday === today;
+
+  const weekStart = startOfWeek(now);
+  const thisWeek = state.history.filter((h) => new Date(h.date) >= weekStart);
+  const doneDays = new Set(thisWeek.map((h) => weekdayOf(new Date(h.date))));
+  const doneToday = isToday && thisWeek.some((h) => h.dayId === next.id && weekdayOf(new Date(h.date)) === today);
+  const kneeToday = state.knee.find((k) => k.date === dateKey(now));
+  const reminder = state.settings.remindersOn ? state.settings.times[next.id] ?? '16:00' : 'Slökkt';
 
   return (
     <Screen title="Bjarki Fitness" subtitle={greeting()}>
-      {/* Vikustika */}
       <Section title="Þessi vika">
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           {WEEKDAYS.map((d, i) => {
             const wd = i + 1;
-            const hasWorkout = weeklyPlan.some((p) => p.weekday === wd);
+            const hasWorkout = state.plan.some((p) => p.weekday === wd);
+            const done = doneDays.has(wd);
             const active = wd === today;
             return (
               <View
                 key={d}
                 style={{
                   width: 42,
-                  paddingVertical: spacing.sm,
+                  height: 58,
                   borderRadius: radius.md,
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: 6,
                   backgroundColor: active ? colors.accent : colors.surface,
                 }}
@@ -41,28 +53,31 @@ export default function Heim() {
                 <T variant="caption" color={active ? colors.bg : colors.textMuted}>
                   {d}
                 </T>
-                <View
-                  style={{
-                    width: 6,
-                    height: 6,
-                    borderRadius: 3,
-                    backgroundColor: hasWorkout ? (active ? colors.bg : colors.accent) : 'transparent',
-                  }}
-                />
+                {done ? (
+                  <Ionicons name="checkmark-circle" size={14} color={active ? colors.bg : colors.success} />
+                ) : (
+                  <View
+                    style={{
+                      width: 6,
+                      height: 6,
+                      borderRadius: 3,
+                      backgroundColor: hasWorkout ? (active ? colors.bg : colors.accent) : 'transparent',
+                    }}
+                  />
+                )}
               </View>
             );
           })}
         </View>
       </Section>
 
-      {/* Næsta æfing */}
       <Section title={isToday ? 'Æfing dagsins' : 'Næsta æfing'}>
         <Link href={`/aefing/${next.id}`} asChild>
           <Pressable>
-            <Card highlight>
+            <Card highlight={!doneToday}>
               <View style={[styles.row, { justifyContent: 'space-between' }]}>
                 <Badge label={next.dayName} tone="accent" />
-                {next.requiresPhysioApproval ? <Badge label="Læst" tone="warning" /> : null}
+                {doneToday ? <Badge label="Lokið í dag" tone="accent" /> : null}
               </View>
               <T variant="title" style={{ marginTop: spacing.md }}>
                 {next.title}
@@ -72,11 +87,13 @@ export default function Heim() {
               </T>
               <View style={[styles.row, { marginTop: spacing.lg, justifyContent: 'space-between' }]}>
                 <T variant="label" muted>
-                  {next.exercises.length} æfingar · {next.durationMin} mín
+                  {next.exercises.length > 0
+                    ? `${next.exercises.length} æfingar · ${totalSets(next)} sett`
+                    : 'Engar æfingar skráðar'}
                 </T>
                 <View style={[styles.row, { gap: 4 }]}>
                   <T variant="label" color={colors.accent}>
-                    Opna
+                    {next.exercises.length > 0 ? 'Byrja' : 'Bæta við'}
                   </T>
                   <Ionicons name="arrow-forward" size={16} color={colors.accent} />
                 </View>
@@ -86,26 +103,32 @@ export default function Heim() {
         </Link>
       </Section>
 
-      {/* Yfirlit */}
       <Section title="Yfirlit">
         <Card>
           <View style={styles.row}>
-            <Stat value="0/4" label="Æfingar í viku" />
-            <Stat value="–" label="Hnéverkur í dag" />
-            <Stat value="16:00" label="Áminning" />
+            <Stat value={`${thisWeek.length}/${state.plan.length}`} label="Æfingar í viku" />
+            <Stat value={kneeToday ? String(kneeToday.pain) : '–'} label="Hné í dag" />
+            <Stat value={reminder} label="Áminning" />
           </View>
         </Card>
       </Section>
 
-      {/* Öryggisáminning */}
-      <Card style={{ backgroundColor: colors.warningDim, borderColor: 'transparent' }}>
-        <View style={[styles.row, { alignItems: 'flex-start' }]}>
-          <Ionicons name="medkit-outline" size={20} color={colors.warning} />
-          <T muted style={{ flex: 1 }}>
-            Hættu æfingu og hafðu samband við sjúkraþjálfara ef verkur í hné eykst við álag.
-          </T>
-        </View>
-      </Card>
+      {!kneeToday ? (
+        <Link href="/framfarir" asChild>
+          <Pressable>
+            <Card>
+              <View style={styles.row}>
+                <Ionicons name="pulse-outline" size={20} color={colors.accent} />
+                <T style={{ flex: 1 }}>Hvernig er hnéð í dag?</T>
+                <T variant="label" color={colors.accent}>
+                  Skrá
+                </T>
+                <Ionicons name="chevron-forward" size={16} color={colors.accent} />
+              </View>
+            </Card>
+          </Pressable>
+        </Link>
+      ) : null}
     </Screen>
   );
 }

@@ -1,11 +1,12 @@
 import { Ionicons } from '@expo/vector-icons';
 import { ReactNode, useState } from 'react';
 import { Switch, View } from 'react-native';
-import { Badge, Card, Screen, Section, T, styles } from '@/components/ui';
-import { weeklyPlan } from '@/data/plan';
+import { Button, Card, IconButton, Screen, Section, T, styles } from '@/components/ui';
+import { shiftTime } from '@/dates';
+import { useStore } from '@/store';
 import { colors, radius, spacing } from '@/theme';
 
-function Row({ icon, label, value, right }: { icon: keyof typeof Ionicons.glyphMap; label: string; value?: string; right?: ReactNode }) {
+function Row({ icon, label, right }: { icon: keyof typeof Ionicons.glyphMap; label: string; right?: ReactNode }) {
   return (
     <View style={[styles.row, { paddingVertical: spacing.xs }]}>
       <View
@@ -21,17 +22,19 @@ function Row({ icon, label, value, right }: { icon: keyof typeof Ionicons.glyphM
         <Ionicons name={icon} size={16} color={colors.textMuted} />
       </View>
       <T style={{ flex: 1 }}>{label}</T>
-      {value ? <T muted>{value}</T> : null}
       {right}
     </View>
   );
 }
 
 export default function Stillingar() {
-  const [notifications, setNotifications] = useState(true);
+  const { state, toggleReminders, setReminderTime, resetAll } = useStore();
+  const [confirmReset, setConfirmReset] = useState(false);
+  const { remindersOn, times } = state.settings;
+  const plan = [...state.plan].sort((a, b) => a.weekday - b.weekday);
 
   return (
-    <Screen title="Stillingar" subtitle="Áminningar og öryggi">
+    <Screen title="Stillingar" subtitle="Áminningar og gögn">
       <Section title="Áminningar">
         <Card>
           <Row
@@ -39,46 +42,62 @@ export default function Stillingar() {
             label="Æfingaáminningar"
             right={
               <Switch
-                value={notifications}
-                onValueChange={setNotifications}
+                value={remindersOn}
+                onValueChange={toggleReminders}
                 trackColor={{ true: colors.accent, false: colors.surfaceHigh }}
                 thumbColor={colors.text}
               />
             }
           />
-          {weeklyPlan.map((d) => (
-            <View key={d.id}>
-              <View style={styles.divider} />
-              <Row icon="time-outline" label={d.dayName} value="16:00" />
-            </View>
-          ))}
+          {plan.map((d) => {
+            const time = times[d.id] ?? '16:00';
+            return (
+              <View key={d.id} style={{ opacity: remindersOn ? 1 : 0.4 }}>
+                <View style={styles.divider} />
+                <Row
+                  icon="time-outline"
+                  label={d.dayName}
+                  right={
+                    <View style={[styles.row, { gap: spacing.sm }]}>
+                      <IconButton icon="remove" onPress={() => setReminderTime(d.id, shiftTime(time, -30))} />
+                      <T variant="heading" style={{ width: 52, textAlign: 'center' }}>
+                        {time}
+                      </T>
+                      <IconButton icon="add" onPress={() => setReminderTime(d.id, shiftTime(time, 30))} />
+                    </View>
+                  }
+                />
+              </View>
+            );
+          })}
         </Card>
         <T variant="caption" muted>
-          Tilkynningar og breyting á tíma bætast við í næsta skrefi.
+          Tímarnir vistast. Tilkynningarnar sjálfar verða virkjaðar í næsta skrefi.
         </T>
       </Section>
 
-      <Section title="Endurhæfing">
-        <Card style={{ borderColor: colors.warning, borderWidth: 1 }}>
-          <View style={[styles.row, { alignItems: 'flex-start' }]}>
-            <Ionicons name="shield-checkmark-outline" size={22} color={colors.warning} />
-            <View style={{ flex: 1, gap: spacing.sm }}>
-              <T variant="heading">Krefst samþykkis sjúkraþjálfara</T>
-              <T muted>
-                Engar endurhæfingaræfingar eru fyrirfram skráðar. Æfingar eru slegnar inn eftir fyrirmælum
-                sjúkraþjálfara og verða ekki virkar fyrr en samþykki hefur verið skráð.
-              </T>
-              <Badge label="0 æfingar · óvirkt" tone="warning" />
-            </View>
-          </View>
+      <Section title="Gögn">
+        <Card style={{ gap: spacing.md }}>
+          <Row icon="phone-portrait-outline" label="Vistað á þessu tæki" />
+          <Button
+            label={confirmReset ? 'Ýttu aftur til að staðfesta' : 'Eyða öllum gögnum'}
+            variant="danger"
+            icon="trash-outline"
+            onPress={() => {
+              if (confirmReset) {
+                resetAll();
+                setConfirmReset(false);
+              } else {
+                setConfirmReset(true);
+              }
+            }}
+          />
         </Card>
       </Section>
 
       <Section title="Um appið">
         <Card>
-          <Row icon="information-circle-outline" label="Útgáfa" value="0.1.0" />
-          <View style={styles.divider} />
-          <Row icon="phone-portrait-outline" label="Gögn" value="Vistuð á tæki" />
+          <Row icon="information-circle-outline" label="Útgáfa" right={<T muted>0.2.0</T>} />
         </Card>
       </Section>
     </Screen>

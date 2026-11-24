@@ -29,16 +29,12 @@ src/
   data/plan.ts           Vikuáætlun (sýnidögn)
 ```
 
-## Öryggi
+## Gögn
 
-- Engar endurhæfingar- eða hnéálagsæfingar eru fyrirfram skráðar.
-- Neðri líkami og endurhæfing eru læst þar til sjúkraþjálfari samþykkir.
-- Æfingarnar í `src/data/plan.ts` eru staðgenglar sem á að breyta.
+- Allt vistast á tækinu (AsyncStorage / localStorage í Safari).
+- Æfingum er breytt í appinu: Æfingar → dagur → Breyta.
 
 ## Næstu skref
 
-1. Vista æfingasögu á tæki (AsyncStorage)
-2. Staðbundnar tilkynningar kl. 16:00 (expo-notifications)
-3. Breyta tíma tilkynninga
-4. Skrá hnéverk og bata
-5. Ritill fyrir endurhæfingaræfingar með samþykki sjúkraþjálfara
+1. Tilkynningar á æfingadögum
+2. Skrá þyngdir í hverju setti
