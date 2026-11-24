@@ -24,6 +24,7 @@ export type Settings = {
 };
 
 type State = {
+  version: number;
   plan: WorkoutDay[];
   history: HistoryEntry[];
   knee: KneeEntry[];
@@ -32,7 +33,10 @@ type State = {
 
 const KEY = 'bjarki-fitness-v1';
 
+const VERSION = 2;
+
 const defaultState: State = {
+  version: VERSION,
   plan: defaultPlan,
   history: [],
   knee: [],
@@ -41,6 +45,19 @@ const defaultState: State = {
     times: Object.fromEntries(defaultPlan.map((d) => [d.id, '16:00'])),
   },
 };
+
+// Uppfærir eldri vistuð gögn
+function migrate(s: Partial<State>): Partial<State> {
+  if ((s.version ?? 1) < 2 && s.plan) {
+    // Styttri hvíld: 90 → 60 sek, 60 → 45 sek
+    const shorter: Record<string, string> = { '90 sek': '60 sek', '60 sek': '45 sek' };
+    s.plan = s.plan.map((d) => ({
+      ...d,
+      exercises: d.exercises.map((e) => ({ ...e, rest: e.rest ? shorter[e.rest] ?? e.rest : e.rest })),
+    }));
+  }
+  return { ...s, version: VERSION };
+}
 
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
 
@@ -54,7 +71,7 @@ function useStoreValue() {
       .then((raw) => {
         if (!raw) return;
         try {
-          const s = JSON.parse(raw) as Partial<State>;
+          const s = migrate(JSON.parse(raw) as Partial<State>);
           setState({
             ...defaultState,
             ...s,
@@ -81,6 +98,9 @@ function useStoreValue() {
   return {
     state,
     ready,
+    updateExercise(dayId: string, exId: string, patch: Partial<Omit<Exercise, 'id'>>) {
+      mapDay(dayId, (d) => ({ ...d, exercises: d.exercises.map((e) => (e.id === exId ? { ...e, ...patch } : e)) }));
+    },
     addExercise(dayId: string, ex: Omit<Exercise, 'id'>) {
       mapDay(dayId, (d) => ({ ...d, exercises: [...d.exercises, { ...ex, id: uid() }] }));
     },

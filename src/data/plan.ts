@@ -27,10 +27,10 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Efri líkami – ýta',
     focus: 'Brjóst · axlir · þríhöfði',
     exercises: [
-      { id: 'e1', name: 'Bekkpressa með handlóðum', sets: 3, reps: '8–10', rest: '90 sek' },
-      { id: 'e2', name: 'Axlapressa sitjandi', sets: 3, reps: '8–10', rest: '90 sek' },
-      { id: 'e3', name: 'Hliðarlyftur', sets: 3, reps: '12–15', rest: '60 sek' },
-      { id: 'e4', name: 'Þríhöfðapressa í kapli', sets: 3, reps: '12', rest: '60 sek' },
+      { id: 'e1', name: 'Bekkpressa með handlóðum', sets: 3, reps: '8–10', rest: '60 sek' },
+      { id: 'e2', name: 'Axlapressa sitjandi', sets: 3, reps: '8–10', rest: '60 sek' },
+      { id: 'e3', name: 'Hliðarlyftur', sets: 3, reps: '12–15', rest: '45 sek' },
+      { id: 'e4', name: 'Þríhöfðapressa í kapli', sets: 3, reps: '12', rest: '45 sek' },
     ],
   },
   {
@@ -40,10 +40,10 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Efri líkami – toga',
     focus: 'Bak · tvíhöfði',
     exercises: [
-      { id: 'e5', name: 'Niðurtog í kapli', sets: 3, reps: '8–10', rest: '90 sek' },
-      { id: 'e6', name: 'Róður sitjandi', sets: 3, reps: '10', rest: '90 sek' },
-      { id: 'e7', name: 'Face pull', sets: 3, reps: '15', rest: '60 sek' },
-      { id: 'e8', name: 'Tvíhöfðakreppa', sets: 3, reps: '10–12', rest: '60 sek' },
+      { id: 'e5', name: 'Niðurtog í kapli', sets: 3, reps: '8–10', rest: '60 sek' },
+      { id: 'e6', name: 'Róður sitjandi', sets: 3, reps: '10', rest: '60 sek' },
+      { id: 'e7', name: 'Face pull', sets: 3, reps: '15', rest: '45 sek' },
+      { id: 'e8', name: 'Tvíhöfðakreppa', sets: 3, reps: '10–12', rest: '45 sek' },
     ],
   },
   {
@@ -61,9 +61,9 @@ export const defaultPlan: WorkoutDay[] = [
     title: 'Efri líkami – heild',
     focus: 'Ýta · toga · axlir',
     exercises: [
-      { id: 'e9', name: 'Hallandi bekkpressa', sets: 3, reps: '10', rest: '90 sek' },
-      { id: 'e10', name: 'Einarma róður', sets: 3, reps: '10', rest: '90 sek' },
-      { id: 'e11', name: 'Arnold-pressa', sets: 3, reps: '10', rest: '60 sek' },
+      { id: 'e9', name: 'Hallandi bekkpressa', sets: 3, reps: '10', rest: '60 sek' },
+      { id: 'e10', name: 'Einarma róður', sets: 3, reps: '10', rest: '60 sek' },
+      { id: 'e11', name: 'Arnold-pressa', sets: 3, reps: '10', rest: '45 sek' },
     ],
   },
 ];
