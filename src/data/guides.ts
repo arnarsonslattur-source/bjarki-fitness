@@ -399,7 +399,7 @@ export function videoUrl(name: string) {
 }
 
 // Stutt upphitun (~5 mín) – án hopps og djúpra hnébeygja.
-export const warmup = [
+export const warmup: ChecklistItem[] = [
   { id: 'w1', name: 'Rösk ganga eða létt þol', detail: '2 mín' },
   { id: 'w2', name: 'Handahringir fram og aftur', detail: '30 sek' },
   { id: 'w3', name: 'Teygja dregin í sundur', detail: '15 endurt.' },
@@ -407,3 +407,32 @@ export const warmup = [
   { id: 'w6', name: 'Mjaðmahringir standandi', detail: '10 hvora átt' },
   { id: 'w5', name: 'Upphitunarsett – fyrsta æfing, létt', detail: '10 endurt.' },
 ];
+
+export type ChecklistItem = { id: string; name: string; detail: string; how?: string };
+
+// Teygjur eftir æfingu (~8–10 mín). Engar teygjur á hnjánum.
+export const cooldownLegs: ChecklistItem[] = [
+  { id: 'c1', name: 'Framanlæristeygja standandi', detail: '30 sek hvor', how: 'Styddu þig við vegg, gríptu um ökklann og dragðu hælinn rólega að rassinum.' },
+  { id: 'c2', name: 'Mjaðmabeygjuteygja standandi', detail: '30 sek hvor', how: 'Langt skref fram, aftari fótur beinn, kreistu rassinn og ýttu mjöðminni fram.' },
+  { id: 'c3', name: 'Aftanlæristeygja liggjandi', detail: '45 sek hvor', how: 'Á bakinu, teygja um ilina og dragðu beinan fótinn upp.' },
+  { id: 'c4', name: 'Rassteygja (mynd 4)', detail: '45 sek hvor', how: 'Á bakinu, ökkli yfir hitt hnéð og dragðu lærið að þér.' },
+  { id: 'c5', name: 'Kálfateygja við vegg', detail: '30 sek hvor', how: 'Hendur á vegg, aftari fótur beinn og hællinn í gólfinu.' },
+  { id: 'c6', name: 'Innanlæristeygja sitjandi', detail: '45 sek', how: 'Sestu með iljarnar saman og láttu hnén síga rólega út.' },
+  { id: 'c7', name: 'Snúningur liggjandi', detail: '30 sek hvor', how: 'Á bakinu, láttu beygð hnén falla til hliðar og horfðu í hina áttina.' },
+  { id: 'c8', name: 'Róleg öndun liggjandi', detail: '1 mín', how: 'Inn um nefið á 4 sek, út á 6 sek.' },
+];
+
+export const cooldownUpper: ChecklistItem[] = [
+  { id: 'u1', name: 'Brjóstteygja við vegg', detail: '30 sek hvor', how: 'Framhandleggur á vegg í axlarhæð, snúðu bolnum rólega frá veggnum.' },
+  { id: 'u2', name: 'Axlarteygja þvert yfir', detail: '30 sek hvor', how: 'Dragðu beina höndina yfir bringuna með hinni hendinni.' },
+  { id: 'u3', name: 'Þríhöfðateygja yfir höfði', detail: '30 sek hvor', how: 'Hönd aftur fyrir höfuð og ýttu olnboganum létt niður.' },
+  { id: 'u4', name: 'Bakteygja við vegg', detail: '45 sek', how: 'Hendur á vegg, gakktu aftur og ýttu bringunni niður á milli handanna.' },
+  { id: 'u5', name: 'Tvíhöfðateygja við vegg', detail: '30 sek hvor', how: 'Lófi á vegg fyrir aftan þig, beinn handleggur, snúðu þér rólega frá.' },
+  { id: 'u6', name: 'Hálsteygja til hliðar', detail: '30 sek hvor', how: 'Hallaðu eyranu að öxlinni, hin öxlin slök niður.' },
+  { id: 'u7', name: 'Snúningur liggjandi', detail: '30 sek hvor', how: 'Á bakinu, láttu beygð hnén falla til hliðar og horfðu í hina áttina.' },
+  { id: 'u8', name: 'Róleg öndun liggjandi', detail: '1 mín', how: 'Inn um nefið á 4 sek, út á 6 sek.' },
+];
+
+export function cooldownFor(title: string): ChecklistItem[] {
+  return /fætur|neðri/i.test(title) ? cooldownLegs : cooldownUpper;
+}

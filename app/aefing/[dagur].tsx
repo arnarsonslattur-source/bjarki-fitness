@@ -5,7 +5,7 @@ import { Linking, Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Badge, Button, Card, IconButton, Input, T, styles } from '@/components/ui';
 import { Exercise } from '@/data/plan';
-import { getGuide, videoUrl, warmup } from '@/data/guides';
+import { ChecklistItem, cooldownFor, getGuide, videoUrl, warmup } from '@/data/guides';
 import { useStore } from '@/store';
 import { colors, radius, spacing } from '@/theme';
 
@@ -53,6 +53,68 @@ function GuidePanel({ ex }: { ex: Exercise }) {
   );
 }
 
+function Checklist({
+  title,
+  icon,
+  items,
+  checked,
+  onToggle,
+  open,
+  onToggleOpen,
+  highlight,
+}: {
+  title: string;
+  icon: keyof typeof Ionicons.glyphMap;
+  items: ChecklistItem[];
+  checked: Record<string, boolean>;
+  onToggle: (id: string) => void;
+  open: boolean;
+  onToggleOpen: () => void;
+  highlight?: boolean;
+}) {
+  const count = items.filter((w) => checked[w.id]).length;
+  const all = count === items.length;
+  return (
+    <Card highlight={highlight && open && !all}>
+      <Pressable onPress={onToggleOpen} style={[styles.row, { justifyContent: 'space-between' }]}>
+        <View style={[styles.row, { gap: spacing.sm }]}>
+          <Ionicons name={all ? 'checkmark-circle' : icon} size={20} color={all ? colors.success : colors.warning} />
+          <T variant="heading">{title}</T>
+        </View>
+        <View style={[styles.row, { gap: spacing.xs }]}>
+          <T variant="label" muted>
+            {count}/{items.length}
+          </T>
+          <Ionicons name={open ? 'chevron-up' : 'chevron-down'} size={16} color={colors.textMuted} />
+        </View>
+      </Pressable>
+      {open ? (
+        <View style={{ marginTop: spacing.md, gap: spacing.xs }}>
+          {items.map((w) => {
+            const on = !!checked[w.id];
+            return (
+              <Pressable key={w.id} onPress={() => onToggle(w.id)} style={[styles.row, { paddingVertical: 6, alignItems: 'flex-start' }]}>
+                <Ionicons name={on ? 'checkbox' : 'square-outline'} size={22} color={on ? colors.accent : colors.textFaint} />
+                <View style={{ flex: 1, opacity: on ? 0.5 : 1, gap: 2 }}>
+                  <T>{w.name}</T>
+                  {w.how ? (
+                    <T variant="label" muted style={{ fontWeight: '400' }}>
+                      {w.how}
+                    </T>
+                  ) : null}
+                </View>
+                <T variant="label" muted>
+                  {w.detail}
+                </T>
+              </Pressable>
+            );
+          })}
+        </View>
+      ) : null}
+    </Card>
+  );
+}
+
 export default function AefingDagsins() {
   const { dagur } = useLocalSearchParams<{ dagur: string }>();
   const router = useRouter();
@@ -62,6 +124,8 @@ export default function AefingDagsins() {
   const [done, setDone] = useState<Record<string, number>>({});
   const [warmDone, setWarmDone] = useState<Record<string, boolean>>({});
   const [warmOpen, setWarmOpen] = useState(true);
+  const [coolDone, setCoolDone] = useState<Record<string, boolean>>({});
+  const [coolOpenManual, setCoolOpenManual] = useState<boolean | null>(null);
   const [openGuide, setOpenGuide] = useState<string | null>(null);
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState('');
@@ -84,13 +148,16 @@ export default function AefingDagsins() {
   const setsTotal = day.exercises.reduce((n, e) => n + e.sets, 0);
   const setsDone = day.exercises.reduce((n, e) => n + Math.min(done[e.id] ?? 0, e.sets), 0);
   const progress = setsTotal ? setsDone / setsTotal : 0;
-  const warmCount = warmup.filter((w) => warmDone[w.id]).length;
+  const cooldown = cooldownFor(day.title);
+  const coolOpen = coolOpenManual ?? (setsTotal > 0 && setsDone === setsTotal);
 
   const toggleSet = (exId: string, index: number) =>
     setDone((prev) => {
       const current = prev[exId] ?? 0;
       return { ...prev, [exId]: index < current ? index : index + 1 };
     });
+
+  const toggleCool = (id: string) => setCoolDone((prev) => ({ ...prev, [id]: !prev[id] }));
 
   const toggleWarm = (id: string) => {
     const next = { ...warmDone, [id]: !warmDone[id] };
@@ -154,44 +221,18 @@ export default function AefingDagsins() {
         {!isEditing ? (
           <>
             {/* Upphitun */}
-            <Card style={{ marginBottom: spacing.lg }} highlight={warmOpen && warmCount < warmup.length}>
-              <Pressable onPress={() => setWarmOpen((o) => !o)} style={[styles.row, { justifyContent: 'space-between' }]}>
-                <View style={[styles.row, { gap: spacing.sm }]}>
-                  <Ionicons
-                    name={warmCount === warmup.length ? 'checkmark-circle' : 'flame-outline'}
-                    size={20}
-                    color={warmCount === warmup.length ? colors.success : colors.warning}
-                  />
-                  <T variant="heading">Upphitun · 5 mín</T>
-                </View>
-                <View style={[styles.row, { gap: spacing.xs }]}>
-                  <T variant="label" muted>
-                    {warmCount}/{warmup.length}
-                  </T>
-                  <Ionicons name={warmOpen ? 'chevron-up' : 'chevron-down'} size={16} color={colors.textMuted} />
-                </View>
-              </Pressable>
-              {warmOpen ? (
-                <View style={{ marginTop: spacing.md, gap: spacing.xs }}>
-                  {warmup.map((w) => {
-                    const checked = !!warmDone[w.id];
-                    return (
-                      <Pressable key={w.id} onPress={() => toggleWarm(w.id)} style={[styles.row, { paddingVertical: 6 }]}>
-                        <Ionicons
-                          name={checked ? 'checkbox' : 'square-outline'}
-                          size={22}
-                          color={checked ? colors.accent : colors.textFaint}
-                        />
-                        <T style={{ flex: 1, opacity: checked ? 0.5 : 1 }}>{w.name}</T>
-                        <T variant="label" muted>
-                          {w.detail}
-                        </T>
-                      </Pressable>
-                    );
-                  })}
-                </View>
-              ) : null}
-            </Card>
+            <View style={{ marginBottom: spacing.lg }}>
+              <Checklist
+                title="Upphitun · 5 mín"
+                icon="flame-outline"
+                items={warmup}
+                checked={warmDone}
+                onToggle={toggleWarm}
+                open={warmOpen}
+                onToggleOpen={() => setWarmOpen((o) => !o)}
+                highlight
+              />
+            </View>
 
             {/* Framvinda */}
             <View style={{ marginBottom: spacing.lg, gap: spacing.sm }}>
@@ -330,13 +371,27 @@ export default function AefingDagsins() {
             <Button label="Bæta við" icon="add" onPress={add} disabled={!name.trim()} style={{ marginTop: spacing.sm }} />
           </Card>
         ) : (
-          <Button
+          <>
+            <View style={{ marginTop: spacing.lg }}>
+              <Checklist
+                title="Teygjur · 8–10 mín"
+                icon="body-outline"
+                items={cooldown}
+                checked={coolDone}
+                onToggle={toggleCool}
+                open={coolOpen}
+                onToggleOpen={() => setCoolOpenManual(!coolOpen)}
+                highlight
+              />
+            </View>
+            <Button
             label={setsDone === setsTotal ? 'Ljúka æfingu' : `Ljúka æfingu (${setsDone}/${setsTotal})`}
             icon="checkmark-done"
             onPress={finish}
             disabled={setsDone === 0}
             style={{ marginTop: spacing.xl }}
           />
+          </>
         )}
       </ScrollView>
     </SafeAreaView>
