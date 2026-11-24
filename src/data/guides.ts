@@ -354,6 +354,39 @@ const guides: Record<string, Guide> = {
     tips: ['Ekki rúlla aftur á bakið.', 'Teygja um ökklana gerir þetta erfiðara.'],
     search: 'side lying leg raise form',
   },
+  'súmó réttstaða með handlóði': {
+    muscles: 'Rass · innanlæri · aftanlæri',
+    steps: [
+      'Stattu gleiðstæð/ur með tærnar út og haltu einu þungu handlóði á milli fótanna.',
+      'Ýttu mjöðmunum aftur og beygðu hnén lítillega – bringan uppi og bakið beint.',
+      'Láttu lóðið síga niður þar til þú finnur teygju í aftanlærum og innanlærum.',
+      'Ýttu mjöðmunum fram og stattu upp, kreistu rassinn efst.',
+    ],
+    tips: ['Hreyfingin kemur frá mjöðmunum – hnén beygjast bara smá.', 'Hnén vísa í sömu átt og tærnar.'],
+    search: 'dumbbell sumo deadlift form',
+  },
+  'mjaðmalyfta með gangi': {
+    muscles: 'Aftanlæri · rass',
+    steps: [
+      'Byrjaðu í mjaðmalyftu – mjaðmirnar uppi og iljarnar í gólfinu.',
+      'Gakktu með fæturna smá skref út frá þér á hælunum á meðan mjaðmirnar haldast uppi.',
+      'Farðu eins langt og þú ræður við án þess að mjaðmirnar sígi.',
+      'Gakktu til baka í upphafsstöðu. Það er 1 endurtekning.',
+    ],
+    tips: ['Lítil skref.', 'Finnurðu fyrir krampa aftan í læri? Styttu leiðina.'],
+    search: 'glute bridge walkout',
+  },
+  'mjaðmalyfta með teygju og lóði': {
+    muscles: 'Rass · hliðar mjaðma',
+    steps: [
+      'Settu teygju um lærin rétt fyrir ofan hnén og leggðu handlóð yfir mjaðmirnar.',
+      'Ýttu hnjánum út á móti teygjunni.',
+      'Lyftu mjöðmunum upp og kreistu rassinn efst.',
+      'Láttu síga rólega niður og haltu spennu á teygjunni allan tímann.',
+    ],
+    tips: ['Ekki láta hnén falla inn.'],
+    search: 'banded dumbbell glute bridge',
+  },
 };
 
 export function getGuide(name: string): Guide | undefined {

@@ -33,7 +33,7 @@ type State = {
 
 const KEY = 'bjarki-fitness-v1';
 
-const VERSION = 4;
+const VERSION = 5;
 
 const defaultState: State = {
   version: VERSION,
@@ -65,8 +65,8 @@ function migrate(s: Partial<State>): Partial<State> {
       return { ...d, exercises: [...def.exercises, ...own] };
     });
   }
-  if ((s.version ?? 1) < 4 && s.plan) {
-    // 3 fótadagar + 1 efri líkami: ný heiti og æfingar, eigin æfingar haldast
+  if ((s.version ?? 1) < 5 && s.plan) {
+    // Krefjandi hnévænir fótadagar + 1 efri líkami: ný heiti og æfingar, eigin æfingar haldast
     s.plan = s.plan.map((d) => {
       const def = defaultPlan.find((p) => p.id === d.id);
       if (!def) return d;
